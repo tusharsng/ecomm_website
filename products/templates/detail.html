@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--Product card-->
+<div class="container">
+    <div class="row">
+		<div class="col-xl-12 col-md-12 col-sm-12 pt-5">
+	    	<main class="card product-card">
+				<div class="row no-gutters">
+					<aside class="col-md-6 border-right">
+						<article class="thumbnail">
+							
+								 <a href="	{{ product.image.url }}" data-fancybox=""><img
+											src="	{{ product.image.url }}" width="600" height="400" alt="product image" class="img-thumbnail"></a>
+						
+						</article> 
+					</aside>
+					<aside class="col-lg-6">
+						<article class="product">
+							<!-- short-info-wrap -->
+							<h3 class="lead  pb-4 text-capitalize">{{ product.name }}</h3>
+
+							<div class="mb-3">
+								<var class=" h3">
+									<span class=""> </span><span class="price">{{ product.price }}$</span>
+									<del class="delete">{{ product.old_price }}$</del>
+								</var>
+							</div>
+							
+							<div class="">
+								<dt>Features</dt>
+								
+								<ul >
+								  <li >{{ product.feature1 }}</li>
+								  <li >{{ product.feature2 }}</li>
+								  <li >{{ product.feature3 }}</li>
+								
+								</ul>
+							</div>
+						
+						
+							
+							<form class="" action="{% url 'cart_add' product.id %}" method="POST">
+								{{ cart_product_form }}
+								{% csrf_token %}
+								<input class="btn btn-warning" type="submit" value="Add to cart">
+							</form>
+						</article> 
+					</aside> 
+				</div> 
+			</main> 
+			<article class="card mt-3">
+				<div class="card-body">
+					<h4>Detail overview</h4>
+					 {{ product.description }}
+				</div> 
+			</article> 
+		</div> 
+	</div> 
+</div>
+{% endblock %}

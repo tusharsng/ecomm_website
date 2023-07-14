@@ -1,0 +1,37 @@
+{% extends "../base.html" %}
+
+
+{% block content %}
+<style>
+    .form-edit input,
+    textarea {
+        padding: 6px;
+        display: flex;
+        width: 100%;
+
+    }
+</style>
+<div class="container">
+    <div class="col-md-6 m-auto">
+
+        <p>Update your product </p>
+
+
+
+        <form method="POST" action="" class="login" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="form-edit">
+
+
+
+                {{form.as_p}} </div>
+
+            <div class="g-recaptcha" data-sitekey="6LcOiygdAAAAACbF3nkE3_JavWWOlSWXIajAUqXI"></div>
+            <button class="btn btn-primary" type="submit" value="update">Update</button>
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}

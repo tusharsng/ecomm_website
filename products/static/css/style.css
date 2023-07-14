@@ -1,0 +1,243 @@
+/* 
+    1.Main Page
+    2.Navbar
+    3.Product detail
+    4.Cart/Checkout/Orders
+    5.Media
+
+*/
+
+
+/**************************** Main Page ****************************/
+
+.section-header{
+    margin-top: 20px !important;
+}
+.section-intro{
+    margin: 0;
+    background: -o-linear-gradient(rgba(247, 247, 247, 0.2),
+        rgba(255, 255, 255, 0.2)), url("../images/gaming.jpg");
+    background: -webkit-gradient(linear,
+        left top, left bottom,
+        from(rgba(247, 247, 247, 0.2)),
+        to(rgba(255, 255, 255, 0.2))), url("../images/gaming.jpg");
+    background: linear-gradient(rgba(247, 247, 247, 0.2),
+        rgba(255, 255, 255, 0.2)), url("../images/gaming.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    letter-spacing: 0.8px;
+    word-spacing: 1.5px;
+}
+.layout{
+    min-height:90vh;
+    margin-bottom: 30px;
+}
+.header-left h1{
+    font-size: 3rem;
+}
+.header-right h1{
+    font-size: 4rem;
+}
+.red{
+    color:#C80304;
+}
+.text-white{
+    text-shadow: 1px 1px 5px #555;
+}
+.red:hover{
+    color: red;
+}
+.result-text{
+    margin: 25px;
+}
+.content{
+    min-height: 75vh;
+}
+.cookiealert {
+    background: #00034D;
+}
+
+/**************************** Navbar ****************************/
+.icon-sm{
+    padding-top: 10px !important;
+}
+nav{
+    background-color: #00034D;
+    color: white;
+}
+a .nav-link{
+    color: #fff;
+    text-decoration: none;
+}
+a .info-wrap, .card-body .title{
+    color: #00034D;
+}
+.brand-wrap .logo{
+    max-height: 80px;
+}
+.header-main{
+    padding: 0;
+}
+.navbar-toggler{
+    margin: 0 auto;
+}
+.logo{
+    width: 70px !important;
+}
+.my-account-icon{
+   padding:0.5rem 0; 
+}
+.widget-header{
+    margin:0;
+}
+.fa-arrow-down {
+    visibility: visible;
+    font-size: 30px;
+    height: 50px;
+    margin-top: 20px;
+    width: 100px;
+    -webkit-animation: pulse 2s infinite;
+            animation: pulse 2s infinite;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+}
+.hide {
+    visibility: hidden;
+}
+
+/**************************** Product Detail ****************************/
+.product-title{
+    font-size: 1.5rem;
+    
+}
+.price-new{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #C80304;
+}
+.price{
+     font-weight: bold;
+    color:#C80304;
+}
+#id_quantity{
+    margin:10px;
+}
+.product-card{
+    margin-top: 30px;
+}
+
+
+/************************* Cart/Checkout/Orders ***************************/
+
+.hr-top{
+    border-top: 2px solid rgba(0,0,0,.1)
+}
+.img-wrap{
+    padding-left: 0;
+}
+.qty{
+    padding-right: 0;
+}
+.shopping-cart-wrap{
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 15px;
+    margin:10px;
+}
+.gallery-wrap .img-big-wrap img{
+    height: 320px;
+}
+.gallery-wrap .img-big-wrap img, 
+.card-product .img-wrap img{
+       padding:15px;
+}
+.table-header{
+    margin-top: 10px;
+}
+.stripe-button-el{
+    color: #212529 !important;
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+.items-list ul{
+    list-style: none;
+    padding:10px 0;  
+}
+.btn-checkout{
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-image: -webkit-gradient(linear,left top, left bottom,from(#7dc5ee),color-stop(85%, #008cdd),to(#30a2e4));
+    background-image: -o-linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    background-image: linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+}
+.btn-checkout:hover{
+    color:#f4f4f4;
+}
+
+/*********************** Keyframes *****************/
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate(0, 10px);
+                transform: translate(0, 10px);
+    }
+
+    100% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate(0, 10px);
+                transform: translate(0, 10px);
+    }
+
+    100% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+}
+
+/************************* Media ***************************/
+@media only screen and (min-width: 768px) {
+    .header-left h1{
+    font-size: 4rem;
+    padding-top: 16px;
+    }
+    .header-right h1{
+    font-size: 7rem;
+    }
+    .section-header{
+    margin-top: 150px !important;
+    }
+    .shopping-cart-wrap{
+        margin:0;
+    }
+    .gallery-wrap .img-big-wrap img{
+        height: 450px;
+    }
+    .logo{
+    width: auto !important;
+    }
+    .widget-header{
+        margin-right: 10px;
+    }
+}

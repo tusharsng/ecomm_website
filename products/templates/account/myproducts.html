@@ -1,0 +1,97 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div>
+    <p class="text-center"> Here is a list of your products </p>
+
+</div>
+
+<div class="container">
+    <!--Navigation-->
+    <div class="d-flex justify-content-between">
+       <div> <span><a href="{% url 'profile'  %}">Profile</a> >> <a href="">My Products</a></span></div>
+       <div>  <a class="btn btn-primary"href="{% url 'addproduct'  %}">Add product</a></div>
+    </div>
+        <!--starts here-->
+        {% if posts%}
+        <div class="row text-center table-header">
+							<p class="col-3 ml-2">Product</p>
+							<p class="col-2">category</p>
+							<p class="col-2">Old Price</p>
+							<p class="col-2">Price</p>
+							<p class="col-2">Action</p>
+						</div>
+        {% for product in posts %}
+        <main class="col-12 ">
+					<div class="shopping-cart-wrap">
+						
+						
+						<hr>
+						<div class="row text-center">
+							<figure class="media col-3 ml-3">
+								<div class="row">
+                                  <a href="{% url 'product_detail' product.id product.slug %}">
+									<div class=" col-12 "><img alt="product image" src="{% if product.image %}{{ product.image.url }}
+								{% else %}{% static " images/no_image.png " %}{% endif %}" class="img-thumbnail img-sm">
+									</div></a>
+									<h6 class=" col-12 title ">{{ product.name }} </h6>
+								</div>
+							</figure>
+							<div class="col-2 qty">
+								{{ product.category }}
+							</div>
+							<div class="price-wrap col-2">
+								<var>&euro;{{ product.old_price }}</var>
+							</div>
+							<!-- price-wrap .// -->
+							<div class="price-wrap col-2">
+								<var>&euro;{{ product.price }}</var>
+							</div>
+							<div class="text-center col-2">
+								<a href="{% url 'deleteproduct' product.id %}" class="btn"><i class="fas fa-trash-alt red"></i> </a>
+                                <a href="{% url 'editproduct' product.id %}" class="btn"><i class="fas fa-pen text-primary"></i> </a>
+							</div>
+						</div>
+					
+					</div>
+				</main >
+
+       
+        {% endfor %}
+        {% else %}
+        <br> <br> <br>
+        <div class="center">No product yet create one</div></a>
+        {% endif%}
+
+
+
+    </div>
+    <!--ends here-->
+</div>
+<!--Pagination starts-->
+{% if posts.has_other_pages %}
+<div class="pagination">
+    {% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">previous &lt;&lt;</a>
+    {% endif %}
+
+    <span class="current">
+        &nbsp;Page{{ posts.number }} of {{ posts.paginator.num_pages }}
+    </span>
+
+    {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}"> '&gt;&gt; next</a>
+    {% endif %}
+
+
+</div>
+{% endif %}
+<!--pagination ends-->
+
+
+
+{% endblock %}

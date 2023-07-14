@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+ {% load static %}
+ {% block content %}
+
+
+{% if cart %}
+	<section class="section-content padding-y border-top">
+		<div class="container">
+			<div class="row">
+
+				<main class="col-12 col-md-9  mt-5">
+					<div class="shopping-cart-wrap">
+						<div class="row text-center table-header">
+							<p class="col-3 ml-2">Product</p>
+							<p class="col-2">Qty</p>
+							<p class="col-2">Unit Price</p>
+							<p class="col-2">Price</p>
+							<p class="col-2">Action</p>
+						</div>
+						{% for item in cart %} {% with product=item.product %}
+						<hr>
+						<div class="row text-center">
+							<figure class="media col-3 ml-3">
+								<div class="row">
+									<div class=" col-12 img-wrap"><img alt="product image" src="{% if product.image %}{{ product.image.url }}
+								{% else %}{% static " images/no_image.png " %}{% endif %}" class="img-thumbnail img-sm">
+									</div>
+									<h6 class=" col-12 title ">{{ product.name }} </h6>
+								</div>
+							</figure>
+							<div class="col-2 qty">
+								{{ item.quantity }}
+							</div>
+							<div class="price-wrap col-2">
+								<var>{{ item.price }} $</var>
+							</div>
+							<!-- price-wrap .// -->
+							<div class="price-wrap col-2">
+								<var>{{ item.total_price }}$</var>
+							</div>
+							<div class="text-center col-2">
+								<a href="{% url 'cart_remove' product.id %}" class="btn"><i class="fas fa-trash-alt red"></i> </a>
+							</div>
+						</div>
+						{% endwith %}{% endfor %}
+					</div>
+				</main >
+
+<!----------------------------------------Payment Column---------------------->
+				<aside class="col-12 col-md-3">
+					<p class="alert alert-success"> FREE Shipping for all orders above 50$ </p>
+					<div >
+						<h4 class="total_price">Total:   <span class="float-right">{{ cart.get_total_price }}$</span> </h4>
+						<br>
+						<div class="text-right">
+							<a href="{%url 'order_create'%} " class="btn btn-warning ">
+						Checkout
+						</a>
+						</div>
+						
+					</div>
+					<hr>
+					
+				</aside>
+			</div>
+		</div>
+		<!-- container .//  -->
+	</section>
+	{% else %}
+	<div class="text-center container mt-4 ">
+		<div class="shopping-cart-wrap">
+			<h1 class="p-4">Your cart is empty!</h1>	
+		</div>
+	</div>
+{% endif %}
+{% endblock %}

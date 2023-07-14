@@ -1,0 +1,32 @@
+{% extends "../base.html" %}
+
+
+
+
+{% block content %}
+
+<div class="container">
+<div class="col-md-6 m-auto">
+ <div class>
+
+      <h1 class="login-head"> Sign Up </h1>
+      <div class="lead d-flex ">
+        <p> Already have an account? Then please </p>
+        <a class="signup-text signup" href="{{ login_url }}">sign in</a>
+        <p>first. </p>
+      </div>
+
+
+    </div>
+
+
+<form class="form-group" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class="btn btn-primary" > Sign Up &raquo;</button>
+</form>
+</div></div>
+{% endblock %}

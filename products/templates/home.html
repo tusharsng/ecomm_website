@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<section class="section-intro text-white text-center bg-dark mt-2">
+    <div class="container d-flex flex-column ">
+
+
+        <div class="row ">
+            <div class="col-lg-7  col-sm-8 mx-auto text-center">
+                <form class="" action="#" method="get">
+                    <div class="row m-5">
+                        <div class="col-lg-8 col-sm-12 form-group">
+                            <input class="form-control form-control-lg text-center " placeholder="Search Product"
+                                name="q" type="text">
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12 form-group">
+                            <button class="btn btn-warning aligns-items-center" type="search">Search</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+     
+    </div>
+</section>
+
+
+<div class="container">
+    <!--Category-->
+    <div class="text-center ">
+        {% if category %}<h4>Showing results for category
+            "{{ category.name }}"</h4>
+        {% else %}
+        {% if keyword %}
+        <h4>Showing results for "{{ keyword }}"</h4>
+        {% endif %}
+        {% endif %}
+    </div>
+    <div class="row" id="product_list">
+        {% for product in products %}
+        <div class="col-lg-3 col-sm-6 m-4 shadow">
+            <a href="{% url 'product_detail' product.id product.slug %}">
+                <figure class=" m-3">
+                    <div class="">
+                        <img width="300" height="180" alt="product image" src="
+        		{% if product.image %}
+        	    	{{ product.image.url }}
+        		{% else %}
+                    {% static " img/no_image.png" %} {% endif %}">
+                    </div>
+                    <figcaption class=" product shadow-sm">
+                        <p class="lead">{{ product.name }}</p>
+                        <div class="p-2 d-flex justify-content-between align-items-center">
+                         <del class="delete">{{ product.old_price }}$</del>
+                            <span class="price">{{ product.price }}$</span>
+                           
+                        </div>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <!--Pagination starts-->
+    {% if products.has_other_pages %}
+    <div class="text-center">
+        {% if products.has_previous %}
+        <a class="btn btn-primary" href="?page={{ products.previous_page_number }}">previous &lt;&lt; </a>
+        {% endif %}
+
+        <span class="current">
+            &nbsp;Page{{ products.number }} of {{ products.paginator.num_pages }}
+        </span>
+
+        {% if products.has_next %}
+        <a class="btn btn-primary" href="?page={{ products.next_page_number }}"> &gt;&gt; next</a>
+        {% endif %}
+
+
+    </div>{% endif %}
+</div>
+{% endblock %}

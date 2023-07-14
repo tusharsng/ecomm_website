@@ -1,0 +1,54 @@
+{% extends "../base.html" %}
+
+
+
+
+
+
+
+{% block content %}
+
+<div class="container">
+
+
+
+  <div class="col-md-6 m-auto ">
+
+    <div class="">
+
+      <h1 class="login-head"> Login In </h1>
+      
+
+
+    </div>
+
+
+
+
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+       <div class="form-edit">
+      {{ form.as_p }}
+        </div>
+      {% if redirect_field_value %}
+      <input class="" type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+
+
+
+      <button class="btn btn-primary" type="submit"> Log In </button>
+
+
+
+    </form>
+    <div class="lead d-flex ">
+        <p> Not created an account yet, please </p>
+        <a class="delete" href="{{ signup_url }}">sign up</a>
+        <p>first. </p>
+      </div>
+        <a class="delete" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+  </div>
+</div>
+
+{% endblock %}

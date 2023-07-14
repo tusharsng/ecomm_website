@@ -1,0 +1,52 @@
+
+{% extends "../base.html" %}
+
+
+{% load account %}
+
+{% block head_title %}Profile Reset{% endblock %}
+
+{% block content %}
+
+<div class="container">
+   <div class="col-md-6 m-auto">
+    {% if user.is_authenticated %}
+    {% include "account/snippets/already_logged_in.html" %}
+   
+
+    {% endif %}
+<div class=" m-4">
+ <a class="btn btn-warning" href="{% url 'account_change_password' %}">Change password</a></div>
+
+    <p>Update your profile here / allowed file are img only jpeg,png  and max file size is 2mb </p>
+    {% if user.is_authenticated %}
+
+    
+    <form method="POST" action="" class="login" id="Update" enctype="multipart/form-data">
+       
+        {% csrf_token %}
+        <div class="hide">
+        
+        </div>
+       
+        {{form.bio}}</p>
+        <input type="hidden" name="userpro_id"  value="{{user.id}}">
+        <p><label for="id_pro_pic">Pro pic:</label> {{form.pro_pic}}</p>
+       
+        
+        
+        <div class="g-recaptcha" data-sitekey="6LcOiygdAAAAACbF3nkE3_JavWWOlSWXIajAUqXI">
+        </div>
+      
+        <button class="btn btn-primary" type="submit" value="update">Update</button>
+    </form>
+    {% endif %}
+    
+</div>
+
+ <script>
+   function onSubmit(token) {
+     document.getElementById("update").submit();
+   }
+ </script>
+{% endblock %}

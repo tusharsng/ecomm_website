@@ -1,0 +1,51 @@
+{% extends "../base.html" %}
+{% block content %}
+
+<div class="account ">
+    <div>
+
+        <div class="container">
+
+
+            <div class="col-md-6 m-auto ">
+            {% for message in messages%}
+     <p id="message" class="p-2  m-2 bg-warning">
+                                        {{message}}</p>
+                 {%endfor%}
+                <div>
+                    <div>
+                        <p class="display-5"> hello, {{user.username}} welcome to your profile</p>
+
+                    </div>
+                    <div class="d-flex">
+                        {% if obj.pro_pic%}
+
+                        <img src="{{obj.pro_pic.url}}" alt="" width="100" height="100">
+                        {% else%}
+                        <img src="https://cdn.pixabay.com/photo/2015/11/06/13/27/ninja-1027877_960_720.jpg" alt="">
+                        {% endif %}
+                       <div> <p>{{obj.bio}}</p>
+                       
+                       <p> Role is {{obj.Role}}</p><div>
+                    </div>
+                    <div class="mt-4">
+                     <a class="btn btn-warning" href="{% url 'my_order' %}">My orders </a>
+                
+                    <a class=" btn btn-primary" href="{% url 'profileupdate' %}">Edit info</a>
+                    {%if obj.Role == "Buyer"%}
+                          <a class=" btn btn-warning" href="{% url 'apply' %}">Apply for seller</a>
+                    {%elif obj.Role == "Seller" %}
+                     <a class=" btn btn-warning" href="{% url 'myproducts' %}">Manage products</a>
+                    {%endif%}
+                   
+                </div> </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    {% endblock %}
