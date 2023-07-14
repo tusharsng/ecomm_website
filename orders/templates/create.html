@@ -1,0 +1,138 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+{% if cart %}
+<script>
+window.onload = function() {
+  var recaptcha = document.forms["myForm"]["g-recaptcha-response"];
+  recaptcha.required = true;
+  recaptcha.oninvalid = function(e) {
+    // do something
+    alert("Please complete the captcha");
+  }
+}
+</script>
+<section class="section-content upmargin">
+	<div class="container">
+		<!-- Tabs navs -->
+
+		<div class="">
+		<div class="text-center bg-danger text-white">
+		</div>
+			<div class="text-center">
+				<h3 class="text-black">CHECKOUT</h3>
+				<h3>Invoice
+				</h3>
+
+			</div>
+			{% for item in cart %}  
+			<table class="table table-bordered table-sm table-border-primary border-primary">
+				<tbody>
+					<tr>
+
+						<td>{{ item.quantity }}</td>
+						<td>{{ item.product.name }}</td>
+						<td>{{ item.total_price}}$</td>
+					</tr>
+				</tbody>
+
+			</table>
+			{% endfor %}
+			<div class="border border-primary col-md-4 offset-md-8 mt-2 col-sm-8">
+				<h4 class="total_price">Sub-Total: <span class="float-right">{{ cart.get_sub_total }} $</span>
+					<hr>
+					<h4 class="total_price">Tax(8.25%): <span class="float-right">
+							{{ cart.get_tax}} $</span>
+						<hr>
+						<h4 class="total_price">Total: <span class="float-right">
+								{{ cart.get_total_price}} $</span>
+						</h4>
+						<br>
+
+
+			</div>
+		</div>
+		<div class="">
+			<form action=" " method="post" class="order-form" name="myForm" id="myForm">
+		<h4>Delivery Information
+				</h4>
+				<div class="row ">
+					<!----------------------------------------Form Column---------------------->
+					<div class="col-12 col-md-7 checkout-form">
+						<div class="col-12  checkout-form">
+							<!-- 2 column grid layout with text inputs for the first and last names -->
+							<div class="row mb-4">
+								<div class="col">
+									<div class="form-outline btn-outline-primary">
+										<input type="text" name="name" maxlength="50" required="" id="id_first_name"
+											class="form-control" />
+										<label class="form-label" for="form6Example1">Name</label>
+									</div>
+								</div>
+							</div>
+							<!-- Number input -->
+							<div class="form-outline btn-outline-primary mb-4">
+								<input type="number" id="form6Example6" class="form-control" />
+								<label class="form-label" for="form6Example6">Phone Number</label>
+							</div>
+							<!-- Text input -->
+							<div class="form-outline btn-outline-primary mb-4">
+								<input type="text" name="address" maxlength="250" required="" id="id_address"
+									autocompleted="" class="form-control" />
+								<label class="form-label" for="form6Example4">Delivery Address</label>
+							</div>
+						
+							<div class="form-outline btn-outline-primary mb-4">
+								<input type="text" name="zip_code" maxlength="20" required="" id="id_postal_code"
+									class="form-control" />
+								<label class="form-label" for="form6Example3">Zip code:</label>
+							</div>
+
+							<!-- Text input -->
+
+
+							<!-- Email input -->
+							<div class="form-outline btn-outline-primary mb-4">
+								<input type="email" name="email" maxlength="254" required="" id="id_email"
+									class="form-control" />
+								<label class="form-label" for="form6Example5">Email</label>
+							</div>
+
+
+
+							<!-- Message input -->
+							<div class="form-outline btn-outline-primary mb-4">
+								<textarea class="form-control" id="form6Example7" rows="4" name="instructions"
+									required></textarea>
+								<label class="form-label" for="form6Example7">Drop Off Special Instructions
+								</label>
+							</div>
+								
+						
+
+							<!-- Submit button -->
+							<div class=" d-flex justify-content-between">
+						
+							<div class="g-recaptcha" data-sitekey="6LcOiygdAAAAACbF3nkE3_JavWWOlSWXIajAUqXI">
+								
+							</div>
+							<button type="submit" class="btn btn-primary btn-block mb-4">Next</button>
+
+						</div>
+						{% csrf_token %}
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+{% else %}
+<div class="text-center container mt-4 ">
+	<div class="shopping-cart-wrap">
+		<h1 class="p-4">Your have no orders!</h1>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

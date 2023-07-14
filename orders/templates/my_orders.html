@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% if orders %}
+
+<section class="section-content upmargin">
+	<div class="container">
+		<div class="row justify-content-center">
+		
+			<main class="col-12 col-lg-9 mt-5">
+				<div class="shopping-cart-wrap">
+					<div class="row text-center table-header">
+						<p class="col-2">Name</p>
+						<p class="col-2">Order Id</p>
+						<p class="col-2">Date</p>
+						<p class="col-2">Price</p>
+						<p class="col-2">Paid</p>
+						<p class="col-2">Pay</p>
+					</div>
+					{% for order in orders %} 
+				
+						
+						
+							
+					<hr>
+					<div class="row text-center">
+						<figure class="media col-2">
+								<h6 class=" col-12  ">{{ order.name }}  </h6>	</figure>
+						<div class="col-2 qty">
+							{{ order.id }}
+						</div>
+						
+						<div class="price-wrap col-2">
+					
+							<p>{{ order.created }}</p>
+							
+						</div>
+					
+						<div class="price-wrap col-2">
+							<p>&euro;{{ order.total }}</p>
+						</div>
+						<div class="text-center col-2">
+							{% if order.paid %}
+							<p>Yes</p>
+							{% else %}
+							<p>No</p>
+							{% endif %}
+						</div>
+						<div class=" col-2">
+						{% if order.paid %}
+						<p>You have paid</p>
+						{%else%}
+							<a class="btn btn-primary" href="{% url 'payment' order.id %}">pay</a>
+							{%endif%}
+						</div>
+					
+					</div>{% endfor %}
+				</div>
+			</main>
+		</div>
+
+	</div>
+	<!-- container .//  -->
+</section>
+{% else %}
+	<div class="text-center container mt-4 ">
+		<div class="shopping-cart-wrap">
+			<h1 class="p-4">You don't have any orders!</h1>	
+		</div>
+	</div>
+{% endif %}
+{% endblock %}

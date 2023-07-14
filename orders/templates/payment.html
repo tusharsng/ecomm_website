@@ -1,0 +1,97 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+{%if not orders.paid %}
+<section class="section-content upmargin">
+	<div class="container">
+		<!-- Tabs navs -->
+		<ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+			
+			<li class="nav-item" role="presentation">
+				<a class="nav-link active" id="ex2-tab-2" href="{% url 'payment' orders.id %}"
+					aria-controls="ex2-tabs-2" aria-selected="false">Payment</a>
+			</li>
+			
+		</ul>
+
+
+		<form action=" " method="post" class="order-form">
+
+			<div class="row justify-content-around">
+				<!----------------------------------------Form Column---------------------->
+
+				<!----------------------------------------Payment Column---------------------->
+				<aside class="col-12 col-md-3 mt-4">
+					<div class="items-list">
+						you going to pay for order {{orders.id}}
+							for  {{ orders.total}}$
+						
+						{% for obj in orders.products.all %}
+						<div>
+
+							
+
+
+						</div>
+
+						<ul class="list-group">
+
+
+							<li class="list-group-item">
+								<h5>
+									{{ orders.quantity}}x  **  {{obj.name}}
+							=  {{ obj.price}} $
+
+								</h5>
+							</li>
+
+
+
+
+
+						</ul>
+						{%endfor%}
+					</div>
+					<br>
+					<hr>
+					<div>
+						<h4 class="total_price">Total: <span class="float-right">{{total }}$</span>
+						</h4>
+					</div>
+					<div class="text-right">
+						<form action="" method="POST">
+
+							{% csrf_token %}
+							<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								data-key="{{ key }}" data-description="Pay for order {{orders.id}}" data-amount="{{ totaltosend }}"
+								data-locale="auto">
+								</script>
+						</form>
+					</div>
+					<hr>
+					<figure class="itemside mb-3">
+						<aside class="aside"><img alt="visa" src={% static 'img/pay-visa.png' %}></aside>
+						<div class="text-wrap small text-muted">
+							Pay By using visa Cards
+						</div>
+					</figure>
+					<figure class="itemside mb-3">
+						<aside class="aside"> <img alt="mastrcard" src={% static 'img/pay-mastercard.png' %}> </aside>
+						<div class="text-wrap small text-muted">
+							Pay By using MasterCard cards.
+						</div>
+					</figure>
+				</aside>
+			</div>
+		</form>
+	</div>
+</section>
+{% else %}
+<div class="text-center container mt-4 ">
+	<div class="shopping-cart-wrap">
+		<h1 class="p-4">Your have  payed for  this order!!</h1>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
