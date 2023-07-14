@@ -1,0 +1,80 @@
+:root{
+    --bg:#cc6326;
+    --bgblack:#292e33;
+    --bg-accent:#0e71aa;
+    --text-color:#e8ebf3;
+    --nav-size:60px;
+    --border:1px solid ##474a4d;
+    --border-radius:8px;
+    --speed:500ms;
+
+}
+
+
+.seleitem{
+    padding:1rem 2rem;
+    background-color: var(--bg);
+    color: var(--text-color);
+    transition: 0.3s;
+}
+.seleitem:hover{
+    background-color: var(--bg-accent);
+   
+}
+.seleitem a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: larger;
+}
+a{
+    text-decoration: none;
+}
+.navbrand{
+    color: var(--bg);
+    font-size: 2rem;
+    font-style: italic;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navs{
+    text-decoration: none;
+    padding:1rem 2rem;
+    color: var(--bg);
+}
+.navs:hover{
+    background-color: var(--bgblack);
+}
+.drops a{
+    padding: 1rem;
+}
+.drops a:hover{
+    background-color: var(--bg);
+
+}
+.btn-warning{
+    background-color: var(--bg) !important;
+    border: none;
+    color: white;
+}
+.product{
+color:var(--bgblack);
+font-size: large;
+}
+.price{
+    padding: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+    background-color: var(--bg-accent);
+    color:white;
+}
+.delete{
+color: var(--bg);
+font-style: oblique;
+
+}
+.form-edit input,
+textarea {
+    padding: 6px;
+    display: flex;
+    width: 100%;
+
+}
